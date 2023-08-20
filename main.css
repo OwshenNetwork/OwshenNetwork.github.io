@@ -1,0 +1,194 @@
+@font-face {
+    font-family: 'poly';
+    src: url(87d804463a06dcb0.otf) format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'major';
+    src: url(assets/fonts/ae92e92791bf166b.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'major', serif;
+    text-transform: lowercase;
+}
+
+html {
+    background: linear-gradient(180deg, #0076b5, #081844);
+    scroll-behavior: smooth;
+    font-family: 'Cabin', sans-serif;
+}
+
+h1 {
+    font-family: 'poly', serif;
+    font-size: 10rem;
+    font-weight: normal;
+    margin-bottom: 24px;
+}
+
+h6 {
+    font-size: 2.5rem;
+}
+
+p {
+    margin-top: 24px;
+    font-size: 2rem;
+}
+
+.webgl {
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+
+.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    color: white;
+    padding-left: 10%;
+    padding-right: 10%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.first-section {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    color: white;
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+}
+
+.btn-group {
+    margin-top: 16px;
+}
+
+.button {
+    background-color: transparent;
+    border: white 2px solid;
+    color: white;
+    padding: 20px 34px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: white;
+    border: #0076b5 2px solid;
+    color: #0076b5;
+}
+
+#counter {
+    font-family: 'poly', serif;
+    opacity: 0;
+    transition: opacity 1s;
+    position: fixed;
+    font-weight: normal;
+    line-height: 0.88;
+    bottom: 0;
+    right: 0;
+    font-size: 30rem;
+    color: rgba(256, 256, 256, 0.2);
+}
+
+#counter::after {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    content: 'DAYS';
+    font-size: 5rem;
+    font-weight: bold;
+    transform: translate(16%, -191%) rotate(-90deg);
+}
+
+@media only screen and (max-width: 900px) {
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 16px;
+    }
+
+    h6 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        margin-top: 24px;
+        font-size: 1rem;
+    }
+
+    #counter {
+        font-size: 10rem;
+    }
+
+    #counter::after {
+        font-size: 2rem;
+        transform: translate(20%, -167%) rotate(-90deg);
+    }
+
+    .button {
+        padding: 16px 8px;
+        font-size: 1rem;
+        margin: 4px 2px;
+        width: 230px;
+    }
+}
+
+.loading-container {
+    z-index: 5;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0076b5;
+    transition: opacity 1s;
+}
+
+.loading-bar
+{
+    z-index: 6;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    background: #ffffff;
+    transform: scaleX(0);
+    transform-origin: top left;
+    transition: transform 0.5s;
+    will-change: transform;
+}
+
+.loading-bar.ended
+{
+    transform: scaleX(0);
+    transform-origin: top right;
+    transition: transform 1.5s ease-in-out;
+}
+
+
+/*# sourceMappingURL=main.css.map*/
