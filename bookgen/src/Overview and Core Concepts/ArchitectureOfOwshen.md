@@ -1,0 +1,9 @@
+# Architecture of Owshen
+
+Owshen Platform is basically a smart-contract maintaining a Sparse-Merkle-Tree, similar to TornadoCash, with one big difference. Instead of commitments (Which are hashes of secret values), elliptic-curve points (Public-keys) are stored in the leaves, and one can only spend a coin in case he proves that he knows a private-key \\(s\\), where \\(s \times G (G\\) is a commonly agreed-upon generator point) is a point that exists in the tree (Through a merkle-proof fed in a Zero-Knowledge proof circuit).
+
+Fixed addresses are bad for the destination's privacy, a TornadoCash-style pool will only allow you to hide the sender, but everyone watching from outside can see that money is being sent to the receiver. We may solve this problem by requiring the receiver to generate a new address whenever he wants to receive a coin, but this would require the receiver to be online all the time. If the receiver is someone accepting donations, it's easiest for him to announce a fixed address for receiving the donations.
+
+Stealth addresses solve this problem already: instead of requiring the receiver to generate a new address every time he wants to receive the coin, we will let the sender derive stealth public keys from the receiver's master public key!
+
+The sender will generate a random scalar \\(r\\), and will broadcast the point \\(r \times G\\) publicly. In this case, \\(s \times r \times G\\) is a shared-secret between the sender and the receiver (Very similar to the Diffie-Hellman key-exchange algorithm). \\(s \times r \times G\\) is an elliptic curve point, we can convert it to a scalar using a hash function, so that it can be used as a private-key. The sender will send the coin to \\((hash(s \times r \times G) + s)\times G\\) instead of \\(s \times G\\), and then the receiver would be able to detect incoming transactions and derive the corresponding private-keys for stealth-addresses: \\(hash(s \times r \times G) + s\\).

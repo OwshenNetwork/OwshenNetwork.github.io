@@ -1,0 +1,12 @@
+[book]
+authors = ["Owshen Network"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Owshen Book"
+[output.html]
+mathjax-support = true
+default-theme = "dark"
+preferred-dark-theme = "navy"
+curly-quotes = true
+copy-fonts = true

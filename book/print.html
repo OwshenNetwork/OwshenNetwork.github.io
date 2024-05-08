@@ -1,0 +1,468 @@
+<!DOCTYPE HTML>
+<html lang="en" class="dark" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Owshen Book</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "dark";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('dark')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Developer Guide</li><li class="chapter-item expanded "><a href="Developer Guide/Installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded affix "><li class="part-title">Overview and Core Concepts</li><li class="chapter-item expanded "><a href="Overview and Core Concepts/IntroductionToOwshen.html"><strong aria-hidden="true">2.</strong> Introduction to Owshen</a></li><li class="chapter-item expanded "><a href="Overview and Core Concepts/CryptographicFoundations.html"><strong aria-hidden="true">3.</strong> Cryptographic Foundations</a></li><li class="chapter-item expanded "><a href="Overview and Core Concepts/ArchitectureOfOwshen.html"><strong aria-hidden="true">4.</strong> Architecture of Owshen</a></li><li class="chapter-item expanded affix "><li class="part-title">Technical Details</li><li class="chapter-item expanded "><a href="Technical Details/OwshenCore.html"><strong aria-hidden="true">5.</strong> Owshen Core</a></li><li class="chapter-item expanded "><a href="Technical Details/OwshenWallet.html"><strong aria-hidden="true">6.</strong> Owshen Wallet</a></li><li class="chapter-item expanded "><a href="Technical Details/SmartContractAndSparse-Merkle-Tree.html"><strong aria-hidden="true">7.</strong> Smart Contract and Sparse-Merkle-Tree</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Owshen Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<h2 id="dependencies"><a class="header" href="#dependencies">dependencies</a></h2>
+<ul>
+<li>Clone the project <code>git clone https://github.com/OwshenNetwork/owshen --recurse-submodules</code></li>
+<li>If you already cloned the project without the cloning submodules first running: <code>git submodule update --init --recursive</code></li>
+<li>The option <code>--remote</code> was added to support updating to the latest tips of remote branches: <code>git submodule update --recursive --remote</code></li>
+<li>Install Rust language: <code>curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh</code></li>
+<li>Install Foundry: <code>https://book.getfoundry.sh/getting-started/installation</code></li>
+<li>Install dependencies: <code>apt-get install nodejs npm libgmp3-dev nasm nlohmann-json3-dev</code></li>
+<li>Install Circom/SnarkJS: <code>npm i -g snarkjs circom</code></li>
+<li>Install Owshen: <code>cd owshen &amp;&amp; make install</code></li>
+<li>For installing client dependencies we need to go to client route and: <code>yarn</code> or <code>npm install</code></li>
+<li>Running proper Ganache localhost network: <code>ganache-cli -d --db chain</code>
+(We need to import first account from Ganache to metamask for local testing)</li>
+<li>Initialize your pub/priv keys and deploying dependencies by running <code>cargo run -- init --endpoint http://127.0.0.1:8545 --db test.json</code> (Your keys will be saved in <code>~/.owshen-wallet.json</code> - also you can running this command multiple times for testing purpose)</li>
+<li>For deploying the contracts and hash functions and also test tokens <code>cargo run --release -- deploy --endpoint &quot;http://127.0.0.1:8545&quot; --from &quot;4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d&quot;  --name Localhost --config Localhost.json --id &quot;1337&quot; --deploy-owshen --genesis --deploy-dive --deploy-hash-function</code>
+(The <code>--from</code> flag is private key that we use to deploying contract its set to first ganache private key)</li>
+<li>Run the wallet (GUI): <code>cargo run -- wallet --port 9000 --db test.json --mode test</code></li>
+</ul>
+<p>for testing purpose you should add localhost ganache-cli config to your metamask networks:</p>
+<ul>
+<li>
+<p>chain_id: <code>1337</code></p>
+</li>
+<li>
+<p>rpc_url: <code>http://127.0.0.1:8545</code></p>
+</li>
+<li>
+<p>Beside <code>~/.owshen-wallet.json</code> we also have <code>.owshen-wallet-cache</code> which is cache for owshen contract events for more efficient event processing and reading data from it</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-to-owshen"><a class="header" href="#introduction-to-owshen">Introduction to Owshen</a></h1>
+<h1 id="the-owshen-"><a class="header" href="#the-owshen-">The Owshen 🌊</a></h1>
+<p>Owshen is a privacy platform built for EVM-based blockchains. Owshen gathers multiple ideas around cryptocurrency privacy solutions in a single place to provide ultimate privacy.</p>
+<p>Using Owshen you can get a <strong><em>fixed</em></strong> Owshen address and start transacting with users inside/outside of the platform, without exposing:</p>
+<ol>
+<li><strong>Source</strong> (Spend your coins using Zcash/TornadoCash-style merkle inclusion proofs, along with nullifiers)</li>
+<li><strong>Destination</strong> (Monero-style stealth-addresses are generated each time you send your coins to someone)</li>
+<li><strong>Token/Amount</strong> (These values are obfuscated and only the sender and receiver, who know a shared-secret, will be able to decode them)</li>
+</ol>
+<p>Join our Discord: <a href="https://discord.gg/owshen">Owshen</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cryptographic-foundations"><a class="header" href="#cryptographic-foundations">Cryptographic Foundations</a></h1>
+<h2 id="introduction-to-cryptography-in-blockchain"><a class="header" href="#introduction-to-cryptography-in-blockchain">Introduction to Cryptography in Blockchain</a></h2>
+<h4 id="cryptography-provides-the-foundational-security-features-for-blockchain-technology-it-enables-secure-transactions-maintains-privacy-and-ensures-data-integrity-across-distributed-networks"><a class="header" href="#cryptography-provides-the-foundational-security-features-for-blockchain-technology-it-enables-secure-transactions-maintains-privacy-and-ensures-data-integrity-across-distributed-networks">Cryptography provides the foundational security features for blockchain technology. It enables secure transactions, maintains privacy, and ensures data integrity across distributed networks.</a></h4>
+<ul>
+<li>
+<p>Hash Functions: Used to create a unique fingerprint of data. In blockchain, hash functions secure blocks and verify data integrity.</p>
+</li>
+<li>
+<p>Digital Signatures: Ensure that transactions are authorized by the sender. This is done through a combination of a private key for signing transactions and a public key which anyone can use to verify the authenticity of the signature.</p>
+</li>
+<li>
+<p>Consensus Mechanisms: Utilize cryptographic methods to agree on the validity of transactions without the need for a central authority.</p>
+</li>
+</ul>
+<h2 id="elliptic-curve-cryptography-ecc"><a class="header" href="#elliptic-curve-cryptography-ecc">Elliptic Curve Cryptography (ECC)</a></h2>
+<p>ECC is a public-key cryptography technique based on the algebraic structure of elliptic curves over finite fields. It’s preferred in blockchain technologies for its high security and efficiency, especially given its relatively small key sizes compared to other cryptographic schemes like RSA.</p>
+<ul>
+<li>
+<p>Elliptic Curves: An elliptic curve is a set of points that satisfy a specific mathematical equation. For ECC, the equation is generally of the form \(y ^ 2 = x ^ 3 + a * x + b \), where 𝑎 and 𝑏 are constants.</p>
+</li>
+<li>
+<p>Advantages: ECC offers more security per bit of key size than other public-key cryptosystems, leading to faster processing and lower power consumption.</p>
+</li>
+</ul>
+<p>For hash function owshen using Posidon4, The Poseidon hash function is a cryptographic hash function that is specifically optimized for use in blockchain technologies and zero-knowledge proof systems. Developed primarily for its efficiency in zero-knowledge friendly environments, Poseidon offers a potent combination of security and performance, particularly when integrated within systems like zk-SNARKs (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge).</p>
+<h2 id="why-we-using-posidon4"><a class="header" href="#why-we-using-posidon4">Why we using Posidon4??</a></h2>
+<ul>
+<li>
+<p>Efficiency in Arithmetic Circuits: Poseidon is highly efficient when implemented in SNARKs due to its structure, which is optimized for finite field arithmetic. This efficiency makes it especially suitable for blockchain platforms that utilize zero-knowledge proofs to enhance privacy and scalability.</p>
+</li>
+<li>
+<p>Tuning Flexibility: It offers various parameters that can be tuned according to the specific security and performance needs of a system, allowing us to balance these aspects based on their particular requirements.</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="architecture-of-owshen"><a class="header" href="#architecture-of-owshen">Architecture of Owshen</a></h1>
+<p>Owshen Platform is basically a smart-contract maintaining a Sparse-Merkle-Tree, similar to TornadoCash, with one big difference. Instead of commitments (Which are hashes of secret values), elliptic-curve points (Public-keys) are stored in the leaves, and one can only spend a coin in case he proves that he knows a private-key \(s\), where \(s \times G (G\) is a commonly agreed-upon generator point) is a point that exists in the tree (Through a merkle-proof fed in a Zero-Knowledge proof circuit).</p>
+<p>Fixed addresses are bad for the destination’s privacy, a TornadoCash-style pool will only allow you to hide the sender, but everyone watching from outside can see that money is being sent to the receiver. We may solve this problem by requiring the receiver to generate a new address whenever he wants to receive a coin, but this would require the receiver to be online all the time. If the receiver is someone accepting donations, it’s easiest for him to announce a fixed address for receiving the donations.</p>
+<p>Stealth addresses solve this problem already: instead of requiring the receiver to generate a new address every time he wants to receive the coin, we will let the sender derive stealth public keys from the receiver’s master public key!</p>
+<p>The sender will generate a random scalar \(r\), and will broadcast the point \(r \times G\) publicly. In this case, \(s \times r \times G\) is a shared-secret between the sender and the receiver (Very similar to the Diffie-Hellman key-exchange algorithm). \(s \times r \times G\) is an elliptic curve point, we can convert it to a scalar using a hash function, so that it can be used as a private-key. The sender will send the coin to \((hash(s \times r \times G) + s)\times G\) instead of \(s \times G\), and then the receiver would be able to detect incoming transactions and derive the corresponding private-keys for stealth-addresses: \(hash(s \times r \times G) + s\).</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="owshen-core"><a class="header" href="#owshen-core">Owshen Core</a></h1>
+<p>Owshen core consist of wallet generation and proof generation section and also its has proper HTTP server that serve in local port.</p>
+<h1 id="key-structures"><a class="header" href="#key-structures">Key Structures</a></h1>
+<ol>
+<li>Points on an Elliptic Curve:</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust="><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct Point {
+    pub x: Fp,
+    pub y: Fp,
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Represents a point on an elliptic curve. Each point consists of two coordinates, x and y, defined over a finite field Fp.</p>
+<p>Points are fundamental in ECC and are used to represent public keys and other elements necessary for cryptographic operations</p>
+<ol start="2">
+<li>Private and Public Keys:</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust="><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct PrivateKey {
+    pub secret: Fp,
+}
+<span class="boring">}</span></code></pre></pre>
+<pre><pre class="playground"><code class="language-rust="><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct PublicKey {
+    pub point: Point,
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>PrivateKey: Stores a single scalar value (secret) which acts as a private key.</li>
+<li>PublicKey: Derived from the private key by scalar multiplication of a base point on the elliptic curve. It is essentially a point on the curve.</li>
+</ul>
+<ol start="3">
+<li>Ephemeral Keys:</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust="><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct EphemeralPrivKey {
+    pub secret: Fp,
+}
+<span class="boring">}</span></code></pre></pre>
+<pre><pre class="playground"><code class="language-rust="><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct EphemeralPubKey {
+    pub point: Point,
+}
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Ephemeral Keys: These keys are temporary and used for a single transaction or session to enhance security. They follow the same structure as permanent keys but are not stored long-term.</li>
+</ul>
+<h2 id="cryptographic-operations"><a class="header" href="#cryptographic-operations">Cryptographic Operations</a></h2>
+<h3 id="key-derivation-and-elliptic-curve-operations"><a class="header" href="#key-derivation-and-elliptic-curve-operations">Key Derivation and Elliptic Curve Operations:</a></h3>
+<pre><pre class="playground"><code class="language-rust="><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl PublicKey {
+    pub fn derive(&amp;self, r: Fp) -&gt; (EphemeralPrivKey, EphemeralPubKey, PublicKey) {
+        let ephemeral = *BASE * r;
+        let shared_secret = self.point * r;
+        let shared_secret_hash = hash4([shared_secret.x, shared_secret.y, 0.into(), 0.into()]);
+        let pub_key = self.point + *BASE * shared_secret_hash;
+        (
+            EphemeralPrivKey { secret: r },
+            EphemeralPubKey { point: ephemeral },
+            Self { point: pub_key },
+        )
+    }
+}
+
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>The derive method generates ephemeral private and public keys along with a new derived public key. This operation uses a random scalar r, multiplies it with the base point to generate an ephemeral public key, and then uses a hash function to secure the transaction further.</li>
+</ul>
+<h3 id="shared-secrets-and-stealth-addresses"><a class="header" href="#shared-secrets-and-stealth-addresses">Shared Secrets and Stealth Addresses:</a></h3>
+<pre><pre class="playground"><code class="language-rust="><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl EphemeralPrivKey {
+    pub fn shared_secret(&amp;self, pk: PublicKey) -&gt; Fp {
+        let shared_secret = pk.point * self.secret;
+        hash4([shared_secret.x, shared_secret.y, 0.into(), 0.into()])
+    }
+}
+
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Calculates a shared secret using the ephemeral private key and a public key. This is crucial for generating stealth addresses, allowing for secure and private transactions.</li>
+</ul>
+<h2 id="entropy-and-mnemonic-generation"><a class="header" href="#entropy-and-mnemonic-generation">Entropy and Mnemonic Generation</a></h2>
+<pre><pre class="playground"><code class="language-rust="><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl Entropy {
+    pub fn generate&lt;R: Rng&gt;(rng: &amp;mut R) -&gt; Self {
+        Self { value: rng.gen() }
+    }
+
+    pub fn to_mnemonic(&amp;self) -&gt; Result&lt;String, bip39::Error&gt; {
+        let mnemonic: Mnemonic = Mnemonic::from_entropy(&amp;self.value)?;
+        let words: Vec&lt;&amp;str&gt; = mnemonic.word_iter().collect::&lt;Vec&lt;&amp;str&gt;&gt;();
+        let phrase: String = words.join(&quot; &quot;);
+        Ok(phrase)
+    }
+}
+
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>Handles the generation of entropy and its conversion to a mnemonic phrase, following the BIP39 standard. This feature is critical for user-friendly secure backup and recovery of private keys.</li>
+</ul>
+<h1 id="dive--mint--burn"><a class="header" href="#dive--mint--burn">Dive + Mint &amp; Burn</a></h1>
+<p>In the Owshen protocol, the DIVE token is an ERC-20 token with specialized features for minting and burning tokens through privacy-preserving proofs. This functionality is critical for maintaining token supply integrity while supporting various operations such as token recovery and privacy-enhanced transactions.</p>
+<h2 id="overview-of-dive-token-functionalities"><a class="header" href="#overview-of-dive-token-functionalities">Overview of DIVE Token Functionalities</a></h2>
+<p>The DIVE token integrates advanced cryptographic features, including mint and burn capabilities, which are controlled through the use of zero-knowledge proofs to ensure transactions are validated without exposing sensitive details on the blockchain.</p>
+<p>it has a practical implementation of <a href="https://eip7503.org/">EIP-7503</a>. It’s a relatively minimal ERC-20 smart-contract, deployed on Ethereum blockchain, allowing people to provide private proofs of burn and mint Dive tokens in exchange. The minting is done in a 1:1 scale, which means, for each 1 ETH you burn, you’ll get 1 Dive.</p>
+<p>It uses zkSNARKs under the hood to validate the proof-of-burns. The zero-knowledge protocol argues that there is an account within the state-root of a blockRoot (Which is a public bytes32 value, that can be accessed in smart-contracts by: block.blockRoot or blockroot(idx), and can be fed as a public input to zero-knowledge proof circuits), with an unspendable address (I.e burn-address). The circuit checks the unspendability by checking if the address is in fact equal with the output of a hash-function.</p>
+<ol>
+<li>
+<p>Minting Process:</p>
+<p>Minting in the DIVE ecosystem is uniquely tied to the burning of another asset or a previous version of a DIVE token to ensure the total supply is conserved or appropriately regulated. This process is supported by cryptographic proofs that validate the burn without revealing the identity or amount to the public blockchain network.</p>
+</li>
+<li>
+<p>Burning Process:</p>
+<p>Burning tokens is an essential feature for users who wish to exit certain states or convert tokens into other forms while ensuring that the action is recorded and irreversible on the blockchain.</p>
+</li>
+</ol>
+<h3 id="cryptographic-proof-integration-in-minting"><a class="header" href="#cryptographic-proof-integration-in-minting">Cryptographic Proof Integration in Minting</a></h3>
+<p>The minting process is intricately designed to require a proof of the previous token’s burn, leveraging Ethereum’s capabilities to interact with advanced cryptographic proofs.</p>
+<ul>
+<li>
+<p><code>Proof of Burn</code>: Utilizes zero-knowledge proofs to verify that tokens were burnt without revealing any sensitive information. This method uses the mpt_last_prove and mpt_path_prove functions to generate and verify proofs of the previous token states and their transitions.</p>
+</li>
+<li>
+<p><code>Interaction with Ethereum Smart Contracts</code>: The mint function integrates with Ethereum smart contracts through the ethers-rs library, handling blockchain interactions seamlessly.</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="owshen-wallet"><a class="header" href="#owshen-wallet">Owshen Wallet</a></h1>
+<h3 id="owshen-wallet-consist-of-a-react-application-that-served-via-core"><a class="header" href="#owshen-wallet-consist-of-a-react-application-that-served-via-core">Owshen wallet consist of a React application that served via core.</a></h3>
+<p>Owshen Wallet integrate with Metamask wallet and its duty is handle depositing and sending via Metamask wallet, showing the UTXOs (coins) in general make better user experiences.</p>
+<p><img src="Technical%20Details/../images/owshen-wallet.png" alt="The Owshen Network Wallet" /></p>
+<div style="break-before: page; page-break-before: always;"></div><p>Previously said, a Sparse-Merkle-Tree is being maintained in the Owshen platform’s smart-contract, where each leaf is:</p>
+<p>\(hash({pub}_x,{pub}_y,token,amount)\)</p>
+<p>One can spend/withdraw a coin in the merkle-tree by proving:</p>
+<blockquote>
+<p>I have a private key \(s\) (Private), where there is a leaf in tree with public-key \(s \times G\), holding \(amount\) of \(token\).</p>
+</blockquote>
+<p>After each send, an event will be emitted, providing the data needed for the receiver to recognize his incoming transactions:</p>
+<pre><code class="language-solidity=">event Sent(
+    Point ephemeral, // g^r
+    uint256 index,
+    uint256 timestamp,
+    uint256 hint_tokenAddress, // token + hash(g^sr)
+    uint256 hint_amount, // amount + hash(g^sr)
+    uint256 commitment
+);
+</code></pre>
+<p>The shared secret between the sender and receiver is \(hash(g^{sr})\). We can add the shared-secret to the token-id and amount in order to obfuscate them. (\(p\) is the field-size)</p>
+<p>\({token}_{encoded} = ({token} + hash(g^{sr})) \mod p\)</p>
+<p>\({amount}_{encoded} = ({amount} + hash(g^{sr})) \mod p\)</p>
+<p>The receiver may subtract the shared secret from the token/amount to calculate the leaf’s actual token/amount and try to calculate the commitment. If the commitment he has calculated is equal to the commitment submitted on-chain, then the coin is for him, and he can derive the private-key needed for spending that coin.</p>
+<p>There are another events for Deposit and Spend:</p>
+<pre><code class="language-solidity="> event Spend(uint256 nullifier);
+</code></pre>
+<p>For Deposit, we update tree with new leaf and then initiate new Sent event with proper amount and token address (for deposit token address and amount are not obfuscated)</p>
+<p>The Spend event just notify nullifiers that are spend in withdrawal and send mechanism.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
