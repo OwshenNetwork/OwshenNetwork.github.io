@@ -184,28 +184,27 @@
 <li>The option <code>--remote</code> was added to support updating to the latest tips of remote branches: <code>git submodule update --recursive --remote</code></li>
 <li>Install Rust language: <code>curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh</code></li>
 <li>Install Foundry: <code>https://book.getfoundry.sh/getting-started/installation</code></li>
-<li>Install dependencies: <code>apt-get install nodejs npm libgmp3-dev nasm nlohmann-json3-dev</code></li>
+<li>Install dependencies: <code>sudo apt-get install nodejs npm libgmp3-dev nasm nlohmann-json3-dev</code></li>
 <li>Install Circom/SnarkJS: <code>npm i -g snarkjs circom</code></li>
 <li>Install Owshen: <code>cd owshen &amp;&amp; make install</code></li>
 <li>For installing client dependencies we need to go to client route and: <code>yarn</code> or <code>npm install</code></li>
 <li>Running proper Ganache localhost network: <code>ganache-cli -d --db chain</code>
 (We need to import first account from Ganache to metamask for local testing)</li>
-<li>Initialize your pub/priv keys and deploying dependencies by running <code>cargo run -- init --endpoint http://127.0.0.1:8545 --db test.json</code> (Your keys will be saved in <code>~/.owshen-wallet.json</code> - also you can running this command multiple times for testing purpose)</li>
-<li>For deploying the contracts and hash functions and also test tokens <code>cargo run --release -- deploy --endpoint &quot;http://127.0.0.1:8545&quot; --from &quot;4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d&quot;  --name Localhost --config Localhost.json --id &quot;1337&quot; --deploy-owshen --genesis --deploy-dive --deploy-hash-function</code>
+<li>Initialize your pub/priv keys and deploying dependencies by running <code>cargo run -- init --wallet test.json</code> (Your keys will be saved in <code>~/.owshen-wallet.json</code> - also you can running this command multiple times for testing purpose)</li>
+<li>For deploying the contracts and hash functions and also test tokens <code>cargo run --release -- deploy --endpoint &quot;http://127.0.0.1:8545&quot; --from &quot;4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d&quot;  --name Localhost --config Localhost.json --chain-id &quot;1337&quot; --deploy-owshen --deploy-dive --deploy-hash-function</code>
 (The <code>--from</code> flag is private key that we use to deploying contract its set to first ganache private key)</li>
+<li>Make sure the client is built in root: <code>cd client/ &amp;&amp; yarn build</code></li>
+<li>For generating supported network file and also serve .zkey files in root of project run: <code>make assets</code> (This makes a combination of directories that are needed for windows mode)</li>
 <li>Run the wallet (GUI): <code>cargo run -- wallet --port 9000 --db test.json --mode test</code></li>
 </ul>
-<p>for testing purpose you should add localhost ganache-cli config to your metamask networks:</p>
+<p>For testing purpose you should add localhost ganache-cli config to your metamask networks:</p>
 <ul>
-<li>
-<p>chain_id: <code>1337</code></p>
-</li>
-<li>
-<p>rpc_url: <code>http://127.0.0.1:8545</code></p>
-</li>
-<li>
-<p>Beside <code>~/.owshen-wallet.json</code> we also have <code>.owshen-wallet-cache</code> which is cache for owshen contract events for more efficient event processing and reading data from it</p>
-</li>
+<li>chain_id: <code>1337</code></li>
+<li>rpc_url: <code>http://127.0.0.1:8545</code></li>
+</ul>
+<p>(After that you need to import the first private-key in you metamask of ganache-cli for testing purpose)</p>
+<ul>
+<li>Beside <code>~/.owshen-wallet.json</code> we also have <code>.owshen-wallet-cache</code> which is cache for owshen contract events for more efficient event processing and reading data from it</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-to-owshen"><a class="header" href="#introduction-to-owshen">Introduction to Owshen</a></h1>
 <h1 id="the-owshen-"><a class="header" href="#the-owshen-">The Owshen 🌊</a></h1>
