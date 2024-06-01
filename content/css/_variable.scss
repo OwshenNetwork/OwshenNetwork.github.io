@@ -1,0 +1,109 @@
+$path-font:"../../content/fonts/";
+$path-img:"../../content/img/";
+
+$color-body:#171C26;
+$color-surface:#14161E;
+
+$color-third:#364362;
+$color-second:#7081A9;
+$color-first:#B8C9ED;
+
+//$color-primary:#4346CA;
+$color-primary:#386EE9;
+$color-primary-light:#022954;
+$color-accent:#423BE5;
+$color-accent-light:#08A4BD;
+$color-active:#D4B483;
+
+
+$color-danger:#E83F3F;
+$color-success:#17A855;
+//$color-warning:#eb9019;
+$color-warning:#d77d06;
+$color-link:#A7D2D8;
+$color-special:#1FB799;
+
+$shadow-main : 0 5px 16px -5px rgba(0, 0, 0, 0.1);
+$shadow-main-hover : 0 6px 14px -3px rgba(0, 0, 0, 0.2);
+
+$radius-lg:16px;
+$radius-md:8px;
+$radius-sm:4px;
+
+$size-xl:32px;
+$size-lg:16px;
+$size-md:8px;
+$size-sm:4px;
+
+$font-sm:1rem;
+$font-md:1.5rem;
+$font-lg:2.25rem;
+$font-xl:3.375rem;
+
+$space-section:36px;
+$space-section-lg:64px;
+
+$space-main:12px;
+$form-height:35px;
+
+$time:.2s;
+
+$font-main:UbuntuMono ,monospace ,  Verdana, sans-serif;
+
+
+
+
+@mixin item-shadow($color){
+  box-shadow: 0 3px 6px -2px $color;
+}
+@mixin item-shadow-hover($color){
+  box-shadow: 0 3px 8px -3px $color;
+}
+@mixin form-shadow($color){
+  box-shadow: 0 3px 10px -2px $color;
+}
+@mixin form-shadow-hover($color){
+  box-shadow: 0 4px 14px -2px $color;
+}
+@mixin btn-shadow($color){
+    box-shadow: 0 3px 10px -4px $color;
+}
+@mixin btn-shadow-hover($color){
+    box-shadow: 0 4px 15px -6px $color;
+}
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+$break-xsmall: 384px;
+$break-small: 576px;
+$break-medium: 768px;
+$break-large: 992px;
+$break-xlarge: 1200px;
+$break-xxlarge: 1920px;
+
+@mixin respond-to($media) {
+  @if $media == xs {
+    @media only screen and (max-width: $break-xsmall) { @content; }
+  }
+  @else if $media == sm {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == md {
+    @media only screen and (max-width: $break-medium ) { @content; }
+  }
+  @else if $media == lg {
+    @media only screen and (max-width: $break-large) { @content; }
+  }
+  @else if $media == xl {
+    @media only screen and (max-width: $break-xlarge) { @content; }
+  }
+  @else if $media == xxl {
+    @media only screen and (min-width: $break-xlarge) { @content; }
+  }
+}

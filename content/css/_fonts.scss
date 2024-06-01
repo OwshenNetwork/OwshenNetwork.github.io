@@ -1,0 +1,40 @@
+@font-face {
+    font-family: UbuntuMono;
+    src: url('#{$path-font}UbuntuMono-Regular.ttf');
+    font-weight: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: UbuntuMono;
+    src: url('#{$path-font}UbuntuMono-Bold.ttf');
+    font-weight: bold;
+    font-display: swap;
+  }
+
+  /*
+@font-face {
+    font-family: PlusJakartaSans;
+    src: url('#{$path-font}PlusJakartaSans-SemiBold.eot');
+    src: url('#{$path-font}PlusJakartaSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+         url('#{$path-font}PlusJakartaSans-SemiBold.woff2') format('woff2'),
+         url('#{$path-font}PlusJakartaSans-SemiBold.woff') format('woff'),
+         url('#{$path-font}PlusJakartaSans-SemiBold.ttf') format('truetype');
+    font-weight: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: PlusJakartaSans;
+    src: url('#{$path-font}PlusJakartaSans-Bold.eot');
+    src: url('#{$path-font}PlusJakartaSans-Bold.eot?#iefix') format('embedded-opentype'),
+         url('#{$path-font}PlusJakartaSans-Bold.woff2') format('woff2'),
+         url('#{$path-font}PlusJakartaSans-Bold.woff') format('woff'),
+         url('#{$path-font}PlusJakartaSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-display: swap;
+  }
+
+
+
+*/
