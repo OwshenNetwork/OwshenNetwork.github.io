@@ -5025,6 +5025,20 @@ body {
 .header .ast-bg svg {
   width: 100%;
 }
+.testnet-text{
+  font-size: 30px;
+  margin-top: 40px;
+  color: #7081A9;
+
+}
+.testnet-text span{
+  font-weight: bold;
+}
+.testnet-text:hover{
+ 
+  color: #9da3b1;
+
+}
 
 @media only screen and (max-width: 768px) {
   .header .ast-bg {
