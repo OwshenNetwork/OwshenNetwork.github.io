@@ -1,57 +1,237 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>$CHILLFISH</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHILLFISH!</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js  "
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+
     <style>
+        * {
+            font-family: "Roboto Mono", monospace;
+        }
+
         body {
-            background-color: black;
+            background-color: white;
         }
-        #art {
+
+        .header {
+            margin-top: 20px;
+            background-color: white;
+            border-radius: 10px;
+            height: 70px !important;
+            width: 95%;
+            margin-left: 2.5%;
+        }
+
+        .header-btn {
+            color: rgb(50, 48, 55);
+            font-weight: 500;
+            text-decoration: none;
+            text-align: center;
+            margin-right: 20px;
+            padding: 7px;
+            display: inline-block;
+        }
+
+        @media (max-width: 400px) {
+            .header-btn {
+                font-size: 10px;
+                padding: 4px;
+                margin-right: 0px;
+            }
+
+            .header {
+                width: 100% !important;
+                border-radius: 0;
+                margin: 0%;
+                margin-left: 0%;
+            }
+
+            .coly {
+                display: none;
+            }
+
+            .colx {
+                width: 100% !important;
+            }
+        }
+
+        @media (min-width: 400px) and (max-width: 600px) {
+            .header-btn {
+                font-size: 12px !important;
+                padding: 4px;
+                margin-right: 0px;
+            }
+
+            .coly {
+                display: none;
+            }
+
+            .colx {
+                width: 100% !important;
+            }
+        }
+
+        @media (min-width: 600px) and (max-width: 800px) {
+            .header-btn {
+                font-size: 12px !important;
+                padding: 4px;
+                margin-right: 0px;
+            }
+        }
+
+
+        .header-buy-btn {
+            border: 1px solid rgb(50, 48, 55);
+        }
+
+        .header-buy-btn:hover {
+            background-color: rgb(50, 48, 55);
             color: white;
-            font-family: monospace;
-            color: yellow;
-            margin: 0 auto;
-            width: 52vw;
-            margin-top: 15vh;
-            font-size: 2vw;
         }
-        #title {
-            color: yellow;
-            font-family: monospace;
-            font-size: 2em;
-            text-align: center;
-            font-weight: bold;
+
+        .about {
+            /* height: 300px; */
+
+            width: 95%;
+            margin-left: 2.5%;
+            margin-top: 70px;
         }
-        #btns {
-            margin: 0 auto;
-            text-align: center;
-            margin: 5em;
+
+        .about-txt {
+            background-color: white;
+            border-radius: 10px;
+            height: 100%;
+            padding: 20px;
         }
-        #btns a {
-            color: yellow;
+
+        .chillimg:hover {
+            transform: scale(1.2) !important;
+            transition-duration: 100ms;
         }
-        #btns a:visited {
-            color: yellow;
+
+        .chillimg-rev:hover {
+            transform: scale(0.8) !important;
+            transition-duration: 100ms;
         }
     </style>
+
 </head>
 
 <body>
-    <pre id="art">
-,-.           ,.---'''^\                  O
-{   \       ,__\,---'''''`-.,      O    O
-    I   \    K`,'^           _  `'.     o
-    \  ,.J..-'`          // (O)   ,,X,    o
-    /  (_               ((   ~  ,;:''`  o
-/   ,.X'.,            \\      ':;;;:
-(_../      -._                  ,'`
-            K.=,;.__ /^~/___..'`
-                    /  /`
-                    ~~~
-    </pre>
-    <div id="title">$CHILLFISH</div>
+    <div class="container">
+        <div class="row header">
+            <div class="col-2 align-self-center">
+                <img src="./img.png" alt="logo" style="width: 60px; height: 60px;">
+            </div>
+
+            <!-- center -->
+            <div class="col-8 align-self-center align-items-center">
+                <a href="#how-to-buy" class="header-btn header-buy-btn">HOW TO BUY</a>
+                <a href="#about" class="header-btn">ABOUT</a>
+                <a href="#tokenomics" class="header-btn">TOKENOMICS</a>
+            </div>
+        </div>
+
+        <div id="about" class="row about">
+            <div class="row">
+                <h2>ABOUT CHILLFISH</h2>
+            </div>
+            <div class="col-8 about-txt">
+                <p style="font-weight: bold; font-size: 1em;">The Relaxed Fin-ancial Icon of the Owshen Network 🐟</p>
+                <hr>
+                <p style="font-size: 1em;">
+                    CHILLFISH isn’t just another fish in the sea. It’s here to add a splash of personality to the
+                    crypto
+                    world, combining
+                    community-driven fun with the powerful ecosystem of the Owshen Network. Whether you're a
+                    seasoned
+                    crypto shark or just
+                    dipping your toes into the water, CHILLFISH invites everyone to kick back, relax, and join the
+                    ultimate crypto tide!
+                </p>
+                <br>
+                <a href="https://x.com/chillfish_lol" target="_blank" class="row"
+                    style="background-image: url('./x.png'); background-size: contain; background-repeat: no-repeat; background-position: center; height: 40px; height: 40px; margin-top: 30px;">
+                </a>
+            </div>
+            <div class="col-4 align-content-center align-self-center" style="height: 100%;">
+                <img src="./img-rev.png" class="chillimg" alt="img" style="width: 100%;">
+            </div>
+
+        </div>
+
+        <div id="how-to-buy" class="row about">
+            <div class="row">
+                <h2>HOW TO BUY?</h2>
+            </div>
+            <div class="row">
+                <div class="col-6 align-content-center align-self-center coly">
+                    <img src="./img.png" alt="how-to-buy" class="chillimg-rev" style="width: 90%;">
+                </div>
+                <div class="col-6 about-txt colx">
+                    <p style="font-weight: bold; font-size: 1em;">Step 1: Get a Wallet</p>
+                    <p style="font-size: 1em;">CHILLFISH is an SPL token on the Solana blockchain. To buy CHILLFISH,
+                        you’ll need a Solana-compatible wallet like Phantom or Sollet.</p>
+                    <br>
+                    <p style="font-weight: bold; font-size: 1em;">Step 2: Get SOL</p>
+                    <p style="font-size: 1em;">You’ll need SOL to pay for gas fees and buy CHILLFISH. You can buy SOL
+                        on
+                        exchanges like FTX, Binance, and Coinbase.</p>
+                    <br>
+                    <p style="font-weight: bold; font-size: 1em;">Step 3: Swap for CHILLFISH</p>
+                    <p style="font-size: 1em;">Use a decentralized exchange like Raydium or Serum to swap your SOL for
+                        CHILLFISH. Link to the appropriate DEX will soon be announced in this website.</p>
+                    <br>
+                    <p style="font-weight: bold; font-size: 1em;">Step 4: Add CHILLFISH to Your Wallet</p>
+                    <p style="font-size: 1em;">Make sure your wallet is able to show your CHILLFISH balance. Token
+                        contract
+                        address will soon be announced.</p>
+                    <br>
+                    <p style="font-weight: bold; font-size: 1em;">Step 5: HODL and Earn Rewards</p>
+                    <p style="font-size: 1em;">HODL CHILLFISH in your wallet to earn rewards from the Owshen Network!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tokenomics" class="row about">
+            <div class="row">
+                <h2>TOKENOMICS</h2>
+            </div>
+            <div class="row">
+                <div class="col-12 about-txt">
+                    <p style="font-weight: bold; font-size: 1em;">Total Supply</p>
+                    <p style="font-size: 1em;">1,000,000,000,000,000 CHILLFISH</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="partners" class="row text-center"
+            style="height: 40px !important; margin-top: 40px; margin-bottom: 30px;">
+            <div class="col2" style="height: 100%;">
+                <a href="https://solana.com/" target="_blank">
+                    <img src="./solana.png" alt="solana" style="height: 100%;">
+                </a>
+                <a href="https://raydium.io/" target="_blank">
+                    <img src="./raydium.png" alt="raydium" style="height: 100%;">
+                </a>
+            </div>
+        </div>
 </body>
 
 </html>
